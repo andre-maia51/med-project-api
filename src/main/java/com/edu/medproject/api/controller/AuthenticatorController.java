@@ -1,6 +1,9 @@
 package com.edu.medproject.api.controller;
 
+import com.edu.medproject.api.domain.user.User;
 import com.edu.medproject.api.domain.user.UserAuthenticatorDTO;
+import com.edu.medproject.api.infra.security.TokenDataDTO;
+import com.edu.medproject.api.infra.security.TokenService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +20,15 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthenticatorController {
     @Autowired
     private AuthenticationManager authenticationManager;
+    @Autowired
+    private TokenService tokenService;
 
     @PostMapping
     @Transactional
     public ResponseEntity makeLogin(@RequestBody @Valid UserAuthenticatorDTO data) {
-        var token = new UsernamePasswordAuthenticationToken(data.login(), data.password());
-        var authenticator = authenticationManager.authenticate(token);
-
-        return ResponseEntity.ok().build();
+        var authenticationToken = new UsernamePasswordAuthenticationToken(data.login(), data.password());
+        var authenticator = authenticationManager.authenticate(authenticationToken);
+        var tokenJWT = tokenService.tokenGenerator((User) authenticator.getPrincipal());
+        return ResponseEntity.ok(new TokenDataDTO(tokenJWT));
     }
 }
