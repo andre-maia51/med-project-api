@@ -1,6 +1,7 @@
 package com.edu.medproject.api.infra.exception;
 
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.validation.ValidationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -18,6 +19,11 @@ public class ErrorHandler {
     public ResponseEntity error400Handler(MethodArgumentNotValidException exception) {
         var errors = exception.getFieldErrors();
         return ResponseEntity.badRequest().body(errors.stream().map(ErrorDataValidationDTO::new).toList());
+    }
+
+    @ExceptionHandler(ValidationException.class)
+    public ResponseEntity errorValidationHandler(ValidationException exception) {
+       return ResponseEntity.badRequest().body(exception.getMessage());
     }
 
     public record ErrorDataValidationDTO(String field, String message) {
