@@ -7,8 +7,6 @@ import com.edu.medproject.api.domain.doctor.DoctorRepository;
 import com.edu.medproject.api.domain.patient.PatientRepository;
 import jakarta.validation.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -72,7 +70,6 @@ public class AppointmentService {
             throw new ValidationException("O campo especialidade deve estar preenchido quando não há médico selecionado.");
         }
 
-        Pageable pageable = PageRequest.of(0, 1);
-        return doctorRepository.getRandomDoctor(data.specialty(), data.date(), pageable);
+        return doctorRepository.getRandomDoctor(data.specialty(), data.date());
     }
 }

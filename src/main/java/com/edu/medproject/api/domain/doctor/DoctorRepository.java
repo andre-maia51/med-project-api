@@ -30,9 +30,11 @@ public interface DoctorRepository extends JpaRepository<Doctor, Long> {
                 select a.doctor.id from Appointment a
                 where
                 a.date = :date
+                and
                 a.motivation is null
             )
             order by random()
+            limit 1
             """)
-    Doctor getRandomDoctor(Specialty specialty, LocalDateTime date, Pageable pageable);
+    Doctor getRandomDoctor(Specialty specialty, LocalDateTime date);
 }
