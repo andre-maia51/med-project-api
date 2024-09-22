@@ -4,6 +4,7 @@ import com.edu.medproject.api.domain.appointment.AppointmentCancelledDTO;
 import com.edu.medproject.api.domain.appointment.AppointmentDataDTO;
 import com.edu.medproject.api.domain.appointment.AppointmentDetailedDTO;
 import com.edu.medproject.api.domain.appointment.AppointmentService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/appointment")
+@SecurityRequirement(name = "bearer-key")
 public class AppointmentController {
     @Autowired
     private AppointmentService appointmentService;

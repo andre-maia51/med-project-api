@@ -1,6 +1,7 @@
 package com.edu.medproject.api.controller;
 
 import com.edu.medproject.api.domain.doctor.*;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("/doctor")
+@SecurityRequirement(name = "bearer-key")
 public class DoctorController {
     @Autowired
     private DoctorRepository doctorRepository;
