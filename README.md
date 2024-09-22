@@ -24,12 +24,12 @@ Para rodar o projeto localmente, siga os passos abaixo:
 
 2. Certifique-se de ter o **PostgreSQL** instalado e crie um banco de dados:
     ```sql
-    CREATE DATABASE med_project;
+    CREATE DATABASE med-project;
     ```
 
-3. Configure o arquivo `application.properties` com suas credenciais do PostgreSQL:
+3. Configure o arquivo `application.properties` com suas credenciais do PostgreSQL ou utilize de variáveis de ambiente:
     ```
-    spring.datasource.url=jdbc:postgresql://localhost:5432/med_project
+    spring.datasource.url=jdbc:postgresql://localhost:5432/med-project
     spring.datasource.username=seu_usuario
     spring.datasource.password=sua_senha
     ```
