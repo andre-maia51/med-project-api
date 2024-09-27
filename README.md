@@ -19,7 +19,7 @@ Para rodar o projeto localmente, siga os passos abaixo:
 
 1. Clone o repositório:
     ```bash
-    git clone https://github.com/seu-usuario/med-project.git
+    git clone https://github.com/andre-maia51/med-project-api.git
     ```
 
 2. Certifique-se de ter o **PostgreSQL** instalado e crie um banco de dados:
