@@ -36,12 +36,6 @@ Para rodar o projeto localmente, siga os passos abaixo:
 
 4. Rode as migrations do Flyway ao iniciar a aplicação.
 
-5. Para gerar e rodar o projeto, execute:
-    ```bash
-    ./mvnw clean install
-    java -jar target/med-project.jar
-    ```
-
 ## Como Usar
 
 Você pode testar as requisições da API utilizando o **Insomnia** ou outra ferramenta para testar APIs.
